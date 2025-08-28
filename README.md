@@ -38,9 +38,26 @@ colcon build --packages-select openslam_gmapping slam_gmapping
   ros2 launch slam_gmapping slam_gmapping.launch.py
   ```
 
-* 启动rviz2，并在rviz2中添加TF、map等插件；
+* 启动rviz2
+ ```
+  rviz2 -d ~/ros2_ws/src/ros2_gmapping/slam_gmapping/rviz/gmapping.rviz
+ ```
 
-* 启动键盘控制节点，控制机器人运动，如无异常，便可实现slam建图了。
+* 启动键盘控制节点，控制机器人运动，
+ ```
+   ros2 run slam_gmapping teleop_keyboard
+ ```
+
+w：前进
+x：后退
+a：左转
+d：右转
+s：停止
 
 
+* 保存地图（生成pgm、yaml两个文件）便可实现了
+ ```
+  ros2 run nav2_map_server map_saver_cli  -f ~/ros2_ws/src/ros2_gmapping/slam_gmapping/map/gmapping_house
+
+ ```
 
