@@ -26,6 +26,8 @@
     <depend>sensor_msgs</depend>
     <depend>visualization_msgs</depend>
     <depend>openslam_gmapping</depend>
+    
+    <exec_depend>ncurses</exec_depend>
 
     <test_depend>ament_lint_auto</test_depend>
     <test_depend>ament_lint_common</test_depend>

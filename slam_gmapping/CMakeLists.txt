@@ -28,6 +28,8 @@ find_package(rclcpp REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(visualization_msgs REQUIRED)
 find_package(openslam_gmapping REQUIRED)
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(NCURSES REQUIRED ncurses)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -53,8 +55,20 @@ ament_target_dependencies(slam_gmapping
         nav_msgs
         tf2_geometry_msgs
         openslam_gmapping)
+        
+        
+add_executable(teleop_keyboard src/teleop_keyboard.cpp)
 
-install(TARGETS slam_gmapping
+ament_target_dependencies(teleop_keyboard
+	rclcpp
+	geometry_msgs
+)
+
+target_link_libraries(teleop_keyboard
+  ${NCURSES_LIBRARIES}
+)
+
+install(TARGETS slam_gmapping teleop_keyboard
         DESTINATION lib/${PROJECT_NAME})
 
 install(DIRECTORY launch params
